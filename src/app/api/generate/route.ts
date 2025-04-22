@@ -1,5 +1,4 @@
 import { writerAgent } from "@/lib/agents/writerAgent";
-import { error } from "console";
 
 export async function POST(req: Request) {
   try {
