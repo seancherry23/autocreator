@@ -1,3 +1,4 @@
+import { editorAgent } from "@/lib/agents/editorAgent";
 import { writerAgent } from "@/lib/agents/writerAgent";
 
 export async function POST(req: Request) {
@@ -13,8 +14,12 @@ export async function POST(req: Request) {
       return new Response(JSON.stringify({ error: 'Invalid or missing topic' }), { status: 400 })
     }
 
-    // Run the agent
-    const result = await writerAgent(topic);
+    // Run the agents
+    const draft = await writerAgent(topic);
+    console.log("✍️ WriterAgent Draft:\n", draft);
+
+    const result = await editorAgent(draft);
+    console.log("🪚 EditorAgent Result:\n", result);
 
     // Return a typed response
     return new Response(JSON.stringify({ result }), {
