@@ -1,4 +1,5 @@
 import { callMixtral } from "../mixtralClient";
+import { callGroq } from "../groqClient";
 
 export async function writerAgent(topic: string): Promise<string> {
   const prompt = `
@@ -11,6 +12,6 @@ export async function writerAgent(topic: string): Promise<string> {
   - Have a friendly, confident, helpful tone
   - Include relevant examples if helpful
   `;
-  const draft = await callMixtral(prompt);
+  const draft = await callGroq(prompt);
   return draft;
 }
