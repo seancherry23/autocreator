@@ -1,15 +1,18 @@
 'use client';
 import React, { useState } from "react";
+import OutputTabs from '@/components/OutputTabs'
 
 export default function Home() {
   const [topic, setTopic] = useState('');
   const [status, setStatus] = useState('');
-  const [result, setResult] = useState('');
+  const [draft, setDraft] = useState('');
+  const [edited, setEdited] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("✍️ writerAgent drafting your doc...");
-    setResult('');
+    setDraft('');
+    setEdited('');
 
     try {
       const res = await fetch('/api/generate', {
@@ -21,7 +24,8 @@ export default function Home() {
       });
 
       const data = await res.json();
-      setResult(data.result);
+      setDraft(data.draft);
+      setEdited(data.edited);
       setStatus("✅ Done!");
     } catch (error) {
       console.error(error);
@@ -57,11 +61,12 @@ export default function Home() {
         <p className="mt-4 text-sm text-gray-700">{status}</p>
       )}
 
-      {result && (
-        <div className="mt-8 p-6 bg-white rounded shadow max-w-2xl text-gray-800">
-          <h2 className="text-xl font-semibold mb-2">Generated Blog</h2>
-          <p className="whitespace-pre-line text-gray-800">{result}</p>
-        </div>
+      {draft && edited && (
+        // <div className="mt-8 p-6 bg-white rounded shadow max-w-2xl text-gray-800">
+        //   <h2 className="text-xl font-semibold mb-2">Generated Blog</h2>
+        //   <p className="whitespace-pre-line text-gray-800">{result}</p>
+        // </div>
+        <OutputTabs draft={draft} edited={edited} />
       )}
     </main>
   );
