@@ -18,11 +18,11 @@ export async function POST(req: Request) {
     const draft = await writerAgent(topic);
     console.log("✍️ WriterAgent Draft:\n", draft);
 
-    const result = await editorAgent(draft);
-    console.log("🪚 EditorAgent Result:\n", result);
+    const edited = await editorAgent(draft);
+    console.log("🪚 EditorAgent Result:\n", edited);
 
     // Return a typed response
-    return new Response(JSON.stringify({ result }), {
+    return new Response(JSON.stringify({ draft, edited }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
