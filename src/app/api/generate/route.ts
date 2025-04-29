@@ -1,4 +1,5 @@
 import { editorAgent } from "@/lib/agents/editorAgent";
+import { seoAgent } from "@/lib/agents/seoAgent";
 import { writerAgent } from "@/lib/agents/writerAgent";
 
 export async function POST(req: Request) {
@@ -21,8 +22,11 @@ export async function POST(req: Request) {
     const edited = await editorAgent(draft);
     console.log("🪚 EditorAgent Result:\n", edited);
 
+    const seo = await seoAgent(edited);
+    console.log("📈 SEOAgent Result:\n", seo);
+
     // Return a typed response
-    return new Response(JSON.stringify({ draft, edited }), {
+    return new Response(JSON.stringify({ draft, edited, seo }), {
       status: 200,
       headers: {
         'Content-Type': 'application/json',
