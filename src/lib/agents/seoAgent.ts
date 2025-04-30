@@ -24,14 +24,6 @@ export async function seoAgent(editedDraft: string): Promise<string> {
         ## SEO Title  
         [Your SEO-optimized blog title]
 
-        ## Meta Description (for search engines)  
-        [150-character summary]
-
-        ## SEO Keywords (for you)  
-        - keyword one  
-        - keyword two  
-        - keyword three  
-
         ## Optimized Blog Content (for readers)  
         [KEEP THE ORIGINAL INTRODUCTION HERE]  
         ### [Subheading 1]  
@@ -41,6 +33,14 @@ export async function seoAgent(editedDraft: string): Promise<string> {
         [Paragraphs]
 
         [KEEP THE ORIGINAL CONCLUSION HERE]
+
+         ## Meta Description (for search engines)  
+        [150-character summary]
+
+        ## SEO Keywords (for you)  
+        - keyword one  
+        - keyword two  
+        - keyword three  
 
         ## FAQs (optional addition to the blog post)  
         ### Q: [Question]  
