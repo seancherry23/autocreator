@@ -25,7 +25,7 @@ export default function OutputTabs({ draft, edited, seo }: OutputTabsProps) {
     h2: ({ node, ...props }) => <h2 className="text-lg font-bold mt-6 mb-2" {...props} />,
     h3: ({ node, ...props }) => <h3 className="text-base font-semibold mt-4 mb-1" {...props} />,
     p: ({ node, ...props }) => <p className="mb-3" {...props} />,
-    li: ({ node, ...props }) => <li className="list-disc ml-6 mb-1" {...props} />,
+    li: ({ node, ...props }) => <li className="list-disc ml-6 mb-1 break-words whitespace-normal" {...props} />,
     strong: ({ node, ...props }) => <strong className="font-semibold" {...props} />,
   };
 
@@ -33,7 +33,7 @@ export default function OutputTabs({ draft, edited, seo }: OutputTabsProps) {
     <div className="mt-8 p-6 bg-white rounded shadow max-w-2xl text-gray-800">
       {/* Tabs */}
       <div className="relative flex justify-center mb-8">
-        <div className="bg-gray-100 p-1 rounded-lg flex relative overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+        <div className="bg-gray-100 p-1 rounded-lg flex relative overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth">
           <button
             onClick={() => handleTabChange('draft')}
             className={`snap-start px-4 py-2 rounded-md font-semibold transition-transform duration-300 ease-in-out cursor-pointer ${
@@ -79,11 +79,11 @@ export default function OutputTabs({ draft, edited, seo }: OutputTabsProps) {
       </div>
 
       {/* Title */}
-      <h2 className="text-xl font-semibold mb-4 text-center">Generated Blog Versions</h2>
+      <h2 className="text-lg font-semibold md:text-xl mb-4 text-center">Generated Blog Versions</h2>
 
       {/* Blog content with smooth fade */}
       <div className={`transition-opacity duration-700 ease-in-out ${isFading ? 'opacity-0' : 'opacity-100'}`}>
-          <div className="prose prose-blue max-w-none text-gray-800">
+        <div className="prose prose-blue max-w-full break-words text-gray-800 sm:max-w-md md:max-w-lg lg:max-w-prose">
             <ReactMarkdown components={markdownComponents}>
               {activeTab === 'draft' ? draft : activeTab === 'edited' ? edited : seo}
             </ReactMarkdown>

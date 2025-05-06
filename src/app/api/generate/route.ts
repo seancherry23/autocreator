@@ -1,4 +1,5 @@
 import { editorAgent } from "@/lib/agents/editorAgent";
+import { researchAgent } from "@/lib/agents/researchAgent";
 import { seoAgent } from "@/lib/agents/seoAgent";
 import { writerAgent } from "@/lib/agents/writerAgent";
 
@@ -16,7 +17,10 @@ export async function POST(req: Request) {
     }
 
     // Run the agents
-    const draft = await writerAgent(topic);
+    const research = await researchAgent(topic);
+    console.log("ResearchAgent Draft:\n", research);
+
+    const draft = await writerAgent(research);
     console.log("✍️ WriterAgent Draft:\n", draft);
 
     const edited = await editorAgent(draft);
