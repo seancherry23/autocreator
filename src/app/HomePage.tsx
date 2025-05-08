@@ -1,6 +1,7 @@
 'use client';
 import React, { useState } from "react";
-import OutputTabs from '@/components/OutputTabs'
+import OutputTabs from '@/components/OutputTabs';
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 export default function HomePage() {
   const [topic, setTopic] = useState('');
@@ -71,6 +72,9 @@ export default function HomePage() {
         // </div>
         <OutputTabs draft={draft} edited={edited} seo={seo} />
       )}
+
+      {/* Scroll to Top Button */}
+      <ScrollToTopButton />
     </main>
   );
 }

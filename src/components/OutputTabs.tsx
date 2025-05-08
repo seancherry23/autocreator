@@ -11,6 +11,7 @@ type OutputTabsProps = {
 export default function OutputTabs({ draft, edited, seo }: OutputTabsProps) {
   const [activeTab, setActiveTab] = useState<'draft' | 'edited'>('draft');
   const [isFading, setIsFading] = useState(false);
+  const [copyStatus, setCopyStatus] = useState('');
 
   const handleTabChange = (tab: 'draft' | 'edited' | 'seo') => {
     if (tab === activeTab) return; // no change
@@ -19,6 +20,19 @@ export default function OutputTabs({ draft, edited, seo }: OutputTabsProps) {
       setActiveTab(tab);
       setIsFading(false);
     }, 300); 
+    setCopyStatus('');
+  };
+
+  const handleCopy = async () => {
+    try {
+      const textToCopy = activeTab === 'draft' ? draft : activeTab === 'edited' ? edited : seo;
+      await navigator.clipboard.writeText(textToCopy);
+      setCopyStatus('Copied!');
+      setTimeout(() => setCopyStatus(''), 2000); // Clear status after 2s
+    } catch (error) {
+      console.error(error);
+      setCopyStatus('Copy failed');
+    }
   };
 
   const markdownComponents = {
