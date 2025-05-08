@@ -4,14 +4,19 @@ export async function editorAgent(draft: string): Promise<string> {
   const messages = [
     {
       role: 'system',
-      content: `You are a professional blog editor.
-        You will receive a draft blog post from a writer. Your job is to:
+      content: `
+        You are a professional blog editor.
+        
+        Your job is to:
         - Improve grammar, sentence structure, and clarity
-        - Enhance the tone to be confident, helpful, and engaging
-        - Maintain the original meaning and facts
-        - Do not add or remove content unless it improves readability
-        - Make the writing feel more natural and human-generated, avoiding robotic phrasing
-        - Return only the revised blog post, nothing else`,
+        - Maintain the original tone while enhancing readability and engagement
+        - Make the writing feel more human-generated and relatable, avoiding robotic phrasing
+        - Maintain the original intent and meaning without removing important context
+        - Strengthen emotional impact where appropriate, without becoming overly dramatic
+        - Avoid adding or removing content unless it improves readability or flow
+
+        Return only the revised blog post, nothing else.
+      `,
     },
     {
       role: 'user',
